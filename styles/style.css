@@ -7,3 +7,24 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.link-decoration:hover {
+    color: #4285F4;
+    transition: all 0.5s;
+}
+
+.link-decoration:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: yellowgreen;
+    transition: transform 0.6s ease-out;
+}
+
+.link-decoration:hover:after {
+    transform: scaleX(1);
+    transform-origin: center;
+}
