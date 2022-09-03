@@ -3,7 +3,7 @@ const loadAllCategories = () => {
     fetch(url)
     .then(res => res.json())
     .then(data => displayCategories(data.data.news_category))
-    .catch(error => console.log(error));
+    .catch(error => alert(error));
 }
 
 const displayCategories = categories => {
@@ -23,9 +23,11 @@ const loadAllCategoriesDetail = (detailsId) => {
     const url = ` https://openapi.programming-hero.com/api/news/category/${detailsId}`
     fetch(url)
     .then(res => res.json())
-    .then(data => displayDetails(data.data));
+    .then(data => {
+        displayDetails(data.data);
+        detailArr = data.data;
+    });
 }
-
 
 const displayDetails = details => {
     // console.log(details)
@@ -43,6 +45,10 @@ const displayDetails = details => {
     // found cards 
     const totalNews = details.length;
     document.getElementById('news-number').innerText = totalNews;
+
+    details.sort((a, b) => {
+        return b.total_view - a.total_view; 
+    });
     
     details.forEach(detail => {
         const detailDiv = document.createElement('div');
@@ -53,18 +59,22 @@ const displayDetails = details => {
                 <div class="card-body">
                     <h4 class="card-title fs-5">${detail.title.slice(0,55)+'...'}</h4>
                     <p class="card-text text-muted">${detail.details.slice(0,100)+'...'}</p>      
-                    <div class="d-flex fs-6">
+                    <div class="d-flex justify-content-between fs-6">
                         <div class="d-flex pe-5">
                             <div class="img-fluid ps-0">
                                 <img class="rounded-5" src="${detail.author.img}" style="width: 50px;" alt="" srcset="">
                             </div>
                             <div class="ps-2">
-                                <h5>${detail.author.name ? detail.author.name : "No data found" }</h5>
-                                <h6 class="text-secondary">${detail.author.published_date ? detail.author.published_date : 'No data found'}</h6>
+                                <h5>${detail.author.name ? detail.author.name : 'No data found!' }</h5>
+                                <h6 class="text-secondary">${detail.author.published_date ? detail.author.published_date : 'No data found!'}</h6>
                             </div>
                         </div>
                         <div class="pt-4">
-                            <h6 class="text-secondary"><i class="fa-regular fa-eye"><span class="ps-2">${detail.total_view ? detail.total_view : 0}</span></i></h6>
+                            <h6 class="text-secondary"><i class="fa-regular fa-eye"><span class="ps-2">${detail.total_view ? detail.total_view : 'No data found!'}</span></i></h6>
+                        </div>
+
+                        <div class="pt-3">
+                            <button type="button" class="btn btn-outline-light text-primary"><i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     
                     </div>
@@ -109,13 +119,22 @@ const displayNewsDetailsModal = (modal) =>{
     newsDetails.innerHTML = `
         <img src="${modal.image_url}" class="card-img-top" alt="...">
         <p class="card-text text-muted pt-1">${modal.details}</p>
-        <div class="d-flex justify-content-around">
-            <h6 class="card-text text-primary"><span class="text-secondary">Rating:</span> ${modal.rating.number}</h6>
-            <h6 class="text-secondary pt-1"><i class="fa-regular fa-eye"><span class="ps-2 text-primary">${modal.total_view ? modal.total_view : 0}</span></i></h6>
+        <div class="d-flex justify-content-between">
+            <div class="d-flex pe-2">
+                <div class="img-fluid ps-0">
+                    <img class="rounded-5" src="${modal.author.img}" style="width: 50px;" alt="" srcset="">
+                </div>
+                <div class="ps-2">
+                    <h5>${modal.author.name ? modal.author.name : "No data found" }</h5>
+                    <h6 class="text-secondary">${modal.author.published_date ? modal.author.published_date : 'No data found!'}</h6>
+                </div>
+            </div>
+            <h6 class="card-text text-primary pt-3"><span class="text-secondary">Rating:</span> ${modal.rating.number}</h6>
+            <h6 class="text-secondary pt-3"><i class="fa-regular fa-eye"><span class="ps-2 text-primary">${modal.total_view ? modal.total_view : 'No data found!'}</span></i></h6>
         </div>
 
      `;
 }
 
-
 loadAllCategories();
+

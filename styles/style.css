@@ -28,3 +28,10 @@ body {
     transform: scaleX(1);
     transform-origin: center;
 }
+
+/* footer {
+    position: relative;
+    top:100vh;
+    left:50%;
+    transform: translate(-50%,-50%);
+} */
