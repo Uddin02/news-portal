@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header class="container-fluid">
+    <header class="container-fluid" >
         <!-- navbar section start -->
         <nav class="navbar navbar-expand-lg py-2 border-secondary border-bottom">
             <div class="container-fluid">
@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav ">
-                        <a class="nav-link px-3 active fw-bold text-secondary" aria-current="page" href="#">News</a>
+                        <a  class="nav-link px-3 active fw-bold text-secondary" aria-current="page" href="#">News</a>
                         <a class="nav-link px-3 text-secondary" href="Blog.html">Blog</a>
                 </div>
             </div>
@@ -43,6 +43,12 @@
             <div id="category-container" class=" d-lg-flex justify-content-between text-secondary">
                 
             </div>
+
+            <!-- items found for category  -->
+           <div class="bg-light mt-3 w-100  ">
+                <h3 class="p-1 text-dark "><span id="news-number">0</span> items found for Category</h3>
+            </div>
+
         </section>
 
         <!-- loader or spinner section  -->
@@ -88,7 +94,7 @@
         </section>
     </main>
     <!-- footer  -->
-    <footer class="fixed-bottom bottom-0 mt-4">
+    <footer class=" bottom-0 mt-4">
         <h5 class="text-secondary text-center fw-bolder">Copyright 2021 News Hub</h5>
     </footer>
 

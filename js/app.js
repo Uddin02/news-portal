@@ -2,7 +2,8 @@ const loadAllCategories = () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
     fetch(url)
     .then(res => res.json())
-    .then(data => displayCategories(data.data.news_category));
+    .then(data => displayCategories(data.data.news_category))
+    .catch(error => console.log(error));
 }
 
 const displayCategories = categories => {
@@ -10,13 +11,15 @@ const displayCategories = categories => {
     categories.forEach(element => {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML =`  
-        <a onclick="loadAllCategoriesDetail('${element.category_id}')" class="nav-link px-3 fs-5" href="#">${element.category_name}</a>
+        <a onclick="loadAllCategoriesDetail('${element.category_id}')" class="nav-link px-2 fs-5 link-decoration" href="#">${element.category_name}</a>
         `;
         categoryContainer.appendChild(categoryDiv);
     });
 }
 
 const loadAllCategoriesDetail = (detailsId) => {
+    // start spinner 
+    toggleSpinner(true);
     const url = ` https://openapi.programming-hero.com/api/news/category/${detailsId}`
     fetch(url)
     .then(res => res.json())
@@ -26,9 +29,9 @@ const loadAllCategoriesDetail = (detailsId) => {
 
 const displayDetails = details => {
     // console.log(details)
-    
     // no news found message 
     const noDetailFound = document.getElementById('no-detail-found');
+
     if(details.length === 0){
         noDetailFound.classList.remove('d-none');
     }
@@ -37,6 +40,10 @@ const displayDetails = details => {
     }
     const newsDetailContainer = document.getElementById('news-detail-container');
     newsDetailContainer.textContent = ``;
+    // found cards 
+    const totalNews = details.length;
+    document.getElementById('news-number').innerText = totalNews;
+    
     details.forEach(detail => {
         const detailDiv = document.createElement('div');
         detailDiv.classList.add('col');
@@ -49,11 +56,11 @@ const displayDetails = details => {
                     <div class="d-flex fs-6">
                         <div class="d-flex pe-5">
                             <div class="img-fluid ps-0">
-                                <img src="${detail.author.img}" style="width: 50px;" alt="" srcset="">
+                                <img class="rounded-5" src="${detail.author.img}" style="width: 50px;" alt="" srcset="">
                             </div>
                             <div class="ps-2">
-                                <h5>${detail.author.name ? detail.author.name : "Anonymous" }</h5>
-                                <h6 class="text-secondary">${detail.author.published_date.slice(0,10)}</h6>
+                                <h5>${detail.author.name ? detail.author.name : "No data found" }</h5>
+                                <h6 class="text-secondary">${detail.author.published_date ? detail.author.published_date : 'No data found'}</h6>
                             </div>
                         </div>
                         <div class="pt-4">
@@ -83,6 +90,8 @@ const toggleSpinner = isLoading => {
     }
 }
 
+
+
 // modal
 
 const newsDetails = id => {
@@ -93,7 +102,7 @@ const newsDetails = id => {
 }
 
 const displayNewsDetailsModal = (modal) =>{
-    console.log(modal)
+    // console.log(modal)
     const modalTitle = document.getElementById('newsDetailModalLabel');
     modalTitle.innerText = modal.title;
     const newsDetails = document.getElementById('news-details');
