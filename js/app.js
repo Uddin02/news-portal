@@ -11,26 +11,25 @@ const displayCategories = categories => {
     categories.forEach(element => {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML =`  
-        <a onclick="loadAllCategoriesDetail('${element.category_id}')" class="nav-link px-2 fs-5 link-decoration" href="#">${element.category_name}</a>
+        <a onclick="loadAllCategoriesDetail('${element.category_id}','${element.category_name}')" class="nav-link px-2 fs-5 link-decoration" href="#">${element.category_name}</a>
         `;
         categoryContainer.appendChild(categoryDiv);
     });
 }
 
-const loadAllCategoriesDetail = (detailsId) => {
+const loadAllCategoriesDetail = (detailsId,categoryName) => {
     // start spinner 
     toggleSpinner(true);
     const url = ` https://openapi.programming-hero.com/api/news/category/${detailsId}`
     fetch(url)
     .then(res => res.json())
-    .then(data => {
-        displayDetails(data.data);
-        detailArr = data.data;
-    });
+    .then(data => displayDetails(data.data,categoryName));
+    // console.log(categoryName);
+
 }
 
-const displayDetails = details => {
-    // console.log(details)
+const displayDetails = (details,detailsCategoryName) => {
+    // console.log(detailsCategoryName)
     // no news found message 
     const noDetailFound = document.getElementById('no-detail-found');
 
@@ -42,12 +41,18 @@ const displayDetails = details => {
     }
     const newsDetailContainer = document.getElementById('news-detail-container');
     newsDetailContainer.textContent = ``;
-    // found cards 
+    
+    //display how many cards found in category section 
     const totalNews = details.length;
     document.getElementById('news-number').innerText = totalNews;
 
-    details.sort((a, b) => {
-        return b.total_view - a.total_view; 
+    const displayCategoryName = detailsCategoryName;
+    document.getElementById('news-category-name').innerText = displayCategoryName;
+    // console.log(displayCategoryName);
+
+    // sorting 
+    details.sort((detailOne, detailTwo) => {
+        return detailTwo.total_view - detailOne.total_view; 
     });
     
     details.forEach(detail => {
@@ -59,7 +64,7 @@ const displayDetails = details => {
                 <div class="card-body">
                     <h4 class="card-title fs-5">${detail.title.slice(0,55)+'...'}</h4>
                     <p class="card-text text-muted">${detail.details.slice(0,100)+'...'}</p>      
-                    <div class="d-flex justify-content-between fs-6">
+                    <div class="d-lg-flex justify-content-lg-between fs-6">
                         <div class="d-flex pe-5">
                             <div class="img-fluid ps-0">
                                 <img class="rounded-5" src="${detail.author.img}" style="width: 50px;" alt="" srcset="">
@@ -100,8 +105,6 @@ const toggleSpinner = isLoading => {
     }
 }
 
-
-
 // modal
 
 const newsDetails = id => {
@@ -119,7 +122,7 @@ const displayNewsDetailsModal = (modal) =>{
     newsDetails.innerHTML = `
         <img src="${modal.image_url}" class="card-img-top" alt="...">
         <p class="card-text text-muted pt-1">${modal.details}</p>
-        <div class="d-flex justify-content-between">
+        <div class="d-lg-flex justify-content-lg-between">
             <div class="d-flex pe-2">
                 <div class="img-fluid ps-0">
                     <img class="rounded-5" src="${modal.author.img}" style="width: 50px;" alt="" srcset="">
@@ -137,4 +140,3 @@ const displayNewsDetailsModal = (modal) =>{
 }
 
 loadAllCategories();
-

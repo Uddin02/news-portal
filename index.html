@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav ">
-                        <a  class="nav-link px-3 active fw-bold  border-bottom text-primary" aria-current="page" href="#">News</a>
+                        <a  class="nav-link px-3 active fw-bold text-decoration-underline text-primary" aria-current="page" href="#">News</a>
                         <a class="nav-link px-3 text-secondary" href="Blog.html">Blog</a>
                 </div>
             </div>
@@ -46,18 +46,19 @@
 
             <!-- items found for category  -->
            <div class="bg-light mt-3 w-100  ">
-                <h3 class="p-1 text-dark "><span id="news-number" class="text-primary">0</span> items found for Category</h3>
+                <h3 class="p-1 text-dark "><span id="news-number" class="text-primary">0</span> items found for Category <span id="news-category-name"></span></h3>
             </div>
 
             <!-- sorting category  -->
             <div class="bg-light mt-3 w-100 d-flex">
                 <h3 class="p-1 text-dark ">Sort By View: </h3>
-                <select class="ps-2" name="" id="">
-                    <option class="ps-2" value="">
-                        <h5>Defualt</h5>
+                <select class="ps-2 text-muted" name="" id="selectOption">
+                    <option class="ps-2 text-muted" value="sorting by views">
+                        Sorting by views
                     </option>
-                    <option class="ps-2" value="">
-                        <h5>sorting by views</h5>
+                    
+                    <option class="ps-2 text-muted" value="defualt">
+                        Defualt
                     </option>
                 </select>
             </div>

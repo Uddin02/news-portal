@@ -10,7 +10,7 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
-<body class="container-fluid bg-dark text-light">
+<body class="container-fluid bg-light text-secondary">
     <header class="container-fluid bg-light">
         <!-- navbar section start -->
         <nav class="navbar navbar-expand-lg py-2 border-secondary border-bottom">
@@ -23,8 +23,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav ">
-                        <a class="nav-link px-3 active fw-bold text-secondary border-bottom" aria-current="page" href="index.html">News</a>
-                        <a class="nav-link px-3 text-secondary" href="Blog.html">Blog</a>
+                        <a class="nav-link px-3 active fw-bold text-secondary" aria-current="page" href="index.html">News</a>
+                        <a class="nav-link px-3 text-secondary text-decoration-underline" href="Blog.html">Blog</a>
                 </div>
             </div>
 
@@ -36,10 +36,10 @@
             <h1>Some question answer about Javascript and ES6</h1>
         </header>
         <section class="container-fluid mt-4 text-center mb-4">
-            <div>
-                <h4>1.What is the difference between var , let and const?</h4>
+            <div class="text-secondary" style=" text-align: justify;">
+                <h4 class="fw-bold">1.What is the difference between var , let and const?</h4>
 
-                <p>var declarations are globally scoped or function scoped while let and const are block scoped.
+                <p class="fs-5"><span class="text-primary">Answer:</span> var declarations are globally scoped or function scoped while let and const are block scoped.
                     var variables can be updated and re-declared within its scope; let variables can be updated but not
                     re-declared; const variables can neither be updated nor re-declared.
                     They are all hoisted to the top of their scope. But while var variables are initialized with
@@ -49,9 +49,9 @@
 
 
 
-                <h4 class="mt-5">2.What is the difference between arrow function and regular function?</h4>
+                <h4 class="mt-5 fw-bold">2.What is the difference between arrow function and regular function?</h4>
 
-                <p>Regular functions created using function declarations or expressions are constructible and callable.
+                <p class="fs-5"><span class="text-primary">Answer:</span> Regular functions created using function declarations or expressions are constructible and callable.
                     Since regular functions are constructible, they can be called using the new keyword. However, the
                     arrow functions are only callable and not constructible, i.e arrow functions can never be used as
                     constructor functions. Value inside a regular function is dynamic and depends on how the function is
@@ -60,10 +60,10 @@
 
 
 
-                <h4 class="mt-5">3.What is the difference map, foreach, filter, find?</h4>
+                <h4 class="mt-5 fw-bold">3.What is the difference map, foreach, filter, find?</h4>
 
 
-                <p>.forEach(), is used to execute the same code on every element in an array but does not change the
+                <p class="fs-5"><span class="text-primary">Answer:</span> .forEach(), is used to execute the same code on every element in an array but does not change the
                     array and it returns undefined.
                     <br>
                     .map() executes the same code on every element in an array and returns a new array with the updated
@@ -77,10 +77,10 @@
                 </p>
 
 
-                <h4 class="mt-5">4.Why you will use the template string?</h4>
+                <h4 class="mt-5 fw-bold">4.Why you will use the template string?</h4>
 
 
-                <p>Template literals are literals delimited with backtick (`) characters, allowing for multi-line
+                <p class="fs-5"><span class="text-primary">Answer:</span> Template literals are literals delimited with backtick (`) characters, allowing for multi-line
                     strings, for string interpolation with embedded expressions, and for special constructs called
                     tagged templates.
 
