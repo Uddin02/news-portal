@@ -18,6 +18,7 @@ const displayCategories = categories => {
 }
 
 const loadAllCategoriesDetail = (detailsId,categoryName) => {
+    // console.log(detailsId);
     // start spinner 
     toggleSpinner(true);
     const url = ` https://openapi.programming-hero.com/api/news/category/${detailsId}`
@@ -50,7 +51,7 @@ const displayDetails = (details,detailsCategoryName) => {
     document.getElementById('news-category-name').innerText = displayCategoryName;
     // console.log(displayCategoryName);
 
-    // sorting 
+    // sorting
     details.sort((detailOne, detailTwo) => {
         return detailTwo.total_view - detailOne.total_view; 
     });
@@ -140,3 +141,5 @@ const displayNewsDetailsModal = (modal) =>{
 }
 
 loadAllCategories();
+// to display some data 
+loadAllCategoriesDetail('05');
